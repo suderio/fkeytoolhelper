@@ -5,6 +5,47 @@
   <groupId>net.technearts</groupId>
   <artifactId>fkeytoolhelper</artifactId>
   <version>1.0.1-SNAPSHOT</version>
+
+  <name>fkeytoolhelper</name>
+
+  <description>A java keytool helper</description>
+
+  <url>https://suderio.github.io/fkeytoolhelper</url>
+
+  <organization>
+    <name>Technearts</name>
+    <url>https://www.technearts.net</url>
+  </organization>
+
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://raw.githubusercontent.com/suderio/fkeytoolhelper/main/LICENSE</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>suderio</id>
+      <email>paulo.suderio@gmail.com</email>
+      <name>Paulo Suderio</name>
+    </developer>
+  </developers>
+
+  <scm>
+    <url>https://github.com/suderio/fkeytoolhelper</url>
+    <connection>scm:git:http://github.com/suderio/fkeytoolhelper.git</connection>
+    <developerConnection>scm:git:https://github.com/suderio/fkeytoolhelper.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <issueManagement>
+    <url>https://github.com/suderio/fkeytoolhelper/issues</url>
+    <system>github</system>
+  </issueManagement>
+
+
   <properties>
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
     <kotlin.version>1.7.20</kotlin.version>
@@ -106,6 +147,51 @@
             <plugin>all-open</plugin>
           </compilerPlugins>
         </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <id>attach-artifacts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>${project.build.directory}/${project.artifactId}</file>
+                  <classifier>native</classifier>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.4.0</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
