@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException
 import java.security.UnrecoverableEntryException
 import java.security.cert.CertificateException
 
-@Command(name = "keytool", mixinStandardHelpOptions = true)
+@Command(name = "fkeytoolhelper", mixinStandardHelpOptions = true)
 class FKeytoolHelper : Runnable {
     @Parameters(paramLabel = "<filename>", description = ["The filename."])
     private var fileName: String? = null

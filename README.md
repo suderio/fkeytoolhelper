@@ -1,6 +1,10 @@
-# fkeytoolhelper Project
+# F... Keytool Helper Project
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This is a java keytool helper project.
+
+Keytool per se does not provide much on the way of checking the generated keys. This is a first attempt on solving it.
+
+This project uses Quarkus. 
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
 
