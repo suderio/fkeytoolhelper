@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.technearts</groupId>
   <artifactId>fkeytoolhelper</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.4-SNAPSHOT</version>
 
   <name>fkeytoolhelper</name>
 
@@ -90,6 +90,7 @@
   <build>
     <sourceDirectory>src/main/kotlin</sourceDirectory>
     <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+    <finalName>${project.name}</finalName>
     <plugins>
       <plugin>
         <groupId>${quarkus.platform.group-id}</groupId>
@@ -163,6 +164,7 @@
               <artifacts>
                 <artifact>
                   <file>${project.build.directory}/${project.artifactId}</file>
+                  <type>x86_64-Linux</type>
                   <classifier>native</classifier>
                 </artifact>
               </artifacts>
@@ -216,6 +218,8 @@
         <quarkus.package.type>native</quarkus.package.type>
         <quarkus.package.add-runner-suffix>false</quarkus.package.add-runner-suffix>
         <quarkus.package.output-name>fkeytoolhelper</quarkus.package.output-name>
+        <quarkus.native.compression.level>10</quarkus.native.compression.level>
+        <quarkus.native.compression.additional-args>--ultra-brute</quarkus.native.compression.additional-args>
       </properties>
     </profile>
   </profiles>
