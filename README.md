@@ -4,6 +4,18 @@ This is a java keytool helper project.
 
 Keytool per se does not provide much on the way of checking the generated keys. This is a first attempt on solving it.
 
+```shel script
+Usage: fkeytoolhelper [-hV] <filename> <alias> <keystorePassword> <entryPassword>
+      <filename>           The filename.
+      <alias>              The alias.
+      <keystorePassword>   The keystore password.
+      <entryPassword>      The entry password.
+  -h, --help               Show this help message and exit.
+  -V, --version            Print version information and exit.
+```
+
+## Quarkus
+
 This project uses Quarkus. 
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
