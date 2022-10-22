@@ -1,29 +1,29 @@
 package net.technearts.fkeytoolhelper
 
-import picocli.CommandLine
+import picocli.CommandLine.Command
+import picocli.CommandLine.Parameters
 import java.io.FileInputStream
 import java.io.FileNotFoundException
 import java.io.IOException
-import java.io.InputStream
 import java.security.KeyStore
 import java.security.KeyStoreException
 import java.security.NoSuchAlgorithmException
 import java.security.UnrecoverableEntryException
 import java.security.cert.CertificateException
 
-@CommandLine.Command(name = "keytool", mixinStandardHelpOptions = true)
+@Command(name = "keytool", mixinStandardHelpOptions = true)
 class FKeytoolHelper : Runnable {
-    @CommandLine.Parameters(paramLabel = "<filename>", description = ["The filename."])
-    var fileName: String? = null
+    @Parameters(paramLabel = "<filename>", description = ["The filename."])
+    private var fileName: String? = null
 
-    @CommandLine.Parameters(paramLabel = "<alias>", description = ["The alias."])
-    var alias: String? = null
+    @Parameters(paramLabel = "<alias>", description = ["The alias."])
+    private var alias: String? = null
 
-    @CommandLine.Parameters(paramLabel = "<keystorePassword>", description = ["The keystore password."])
-    var keystorePassword: String? = null
+    @Parameters(paramLabel = "<keystorePassword>", description = ["The keystore password."])
+    private var keystorePassword: String? = null
 
-    @CommandLine.Parameters(paramLabel = "<entryPassword>", description = ["The entry password."])
-    var entryPassword: String? = null
+    @Parameters(paramLabel = "<entryPassword>", description = ["The entry password."])
+    private var entryPassword: String? = null
     override fun run() {
         System.out.printf("Using %s, file and %s entry.\n", fileName, alias)
         val storePass = keystorePassword!!.toCharArray()
@@ -56,7 +56,7 @@ class FKeytoolHelper : Runnable {
             throw RuntimeException(e)
         }
         // Try getting the entry
-        val entry = (try {
+        (try {
             store?.getEntry(alias, entryPass)
         } catch (e: NoSuchAlgorithmException) {
             System.out.printf("Algorithm does not exist again.")
