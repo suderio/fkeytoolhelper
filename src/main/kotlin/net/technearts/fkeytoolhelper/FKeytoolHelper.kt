@@ -5,11 +5,10 @@ import picocli.CommandLine.Parameters
 import java.io.FileInputStream
 import java.io.FileNotFoundException
 import java.io.IOException
-import java.security.KeyStore
-import java.security.KeyStoreException
-import java.security.NoSuchAlgorithmException
-import java.security.UnrecoverableEntryException
+import java.security.*
+import java.security.KeyStore.PrivateKeyEntry
 import java.security.cert.CertificateException
+
 
 @Command(name = "fkeytoolhelper", mixinStandardHelpOptions = true)
 class FKeytoolHelper : Runnable {
@@ -62,13 +61,24 @@ class FKeytoolHelper : Runnable {
             System.out.printf("Algorithm does not exist again.")
             throw RuntimeException(e)
         } catch (e: UnrecoverableEntryException) {
-            System.out.printf("Things went completely south.")
+            System.out.printf("This %s entry does not exist.", alias)
             throw RuntimeException(e)
         } catch (e: KeyStoreException) {
             System.out.printf("Something wrong with the keystore.")
             throw RuntimeException(e)
         }).also {
-            println(it)
+            if (it is PrivateKeyEntry) {
+                val myPrivateKey = it.privateKey
+                println(myPrivateKey.encoded)
+                println("-------------------")
+                println(myPrivateKey.format)
+                println("-------------------")
+                println(myPrivateKey.algorithm)
+                println("-------------------")
+            } else {
+                println("Not a private key")
+                println(it)
+            }
         }
     }
 }
