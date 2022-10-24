@@ -69,7 +69,9 @@ class FKeytoolHelper : Runnable {
         }).also {
             if (it is PrivateKeyEntry) {
                 val myPrivateKey = it.privateKey
-                println(myPrivateKey.encoded)
+                println(myPrivateKey.encoded.contentToString())
+                println("-------------------")
+                println(myPrivateKey.encoded.toString())
                 println("-------------------")
                 println(myPrivateKey.format)
                 println("-------------------")
